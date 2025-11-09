@@ -40,7 +40,7 @@
   bottom: 30px;
   right: 30px;
   padding: 16px 24px;
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   color: white;
   border: none;
   border-radius: 30px;
@@ -80,3 +80,4 @@
     font-size: 0.9rem;
   }
 }
+

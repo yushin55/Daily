@@ -97,7 +97,7 @@
   align-items: center;
   gap: 12px;
   padding: 16px;
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   border-radius: 12px;
   color: white;
   font-size: 16px;
@@ -245,7 +245,7 @@
 }
 
 .save-btn {
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   color: white;
 }
 
@@ -254,7 +254,7 @@
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
 }
 
-/* ?�크롤바 ?��???*/
+/* ?�크롤바 ?��???*/
 .schedule-modal::-webkit-scrollbar {
   width: 8px;
 }
@@ -271,3 +271,4 @@
 .schedule-modal::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+

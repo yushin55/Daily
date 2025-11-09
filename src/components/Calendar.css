@@ -52,7 +52,7 @@
 }
 
 .view-mode-tab.active {
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   color: white;
   box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
 }
@@ -247,7 +247,7 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   border: 2px solid white;
 }
 
@@ -321,3 +321,4 @@
     font-size: 10px;
   }
 }
+

@@ -184,7 +184,7 @@
   align-items: center;
   gap: 8px;
   padding: 12px 16px;
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   color: white;
   border: none;
   border-radius: 8px;
@@ -259,7 +259,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   border-radius: 8px;
   color: white;
   flex-shrink: 0;
@@ -342,7 +342,7 @@
 }
 
 .type-btn.active {
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   border-color: #ff6b35;
   color: white;
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
@@ -516,7 +516,7 @@
 }
 
 .save-btn {
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   color: white;
 }
 
@@ -571,7 +571,7 @@
 }
 
 .health-score-btn.active {
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   border-color: #ff6b35;
   color: white;
   box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
@@ -592,3 +592,4 @@
     min-width: 36px;
   }
 }
+

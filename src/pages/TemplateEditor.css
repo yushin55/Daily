@@ -61,7 +61,7 @@
   align-items: center;
   gap: 8px;
   padding: 12px 24px;
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   color: white;
   border: none;
   border-radius: 8px;
@@ -113,7 +113,7 @@
 }
 
 .default-badge {
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   color: white;
   padding: 4px 12px;
   border-radius: 12px;
@@ -272,7 +272,7 @@
 }
 
 .save-btn {
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   color: white;
 }
 
@@ -469,3 +469,4 @@
 .preview-content::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+

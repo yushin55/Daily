@@ -78,27 +78,27 @@ function TeamSnippetView({ date, teamSnippets, currentUser, onClose, onWriteSnip
                       <span className="user-role">{displayedSnippet.userRole}</span>
                     </div>
                   </div>
-                  {/* USR-002: AI 점수 표시 */}
-                  {displayedSnippet.aiScore && (
-                    <div className="ai-score-display">
-                      <div className="score-badge">
-                        <span className="score-icon">🤖</span>
-                        <span className="score-number">{displayedSnippet.aiScore.total}</span>
-                        <span className="score-max">/100</span>
-                      </div>
-                    </div>
-                  )}
                   
-                  {/* Health Check 점수 표시 */}
-                  {displayedSnippet.healthScore && (
-                    <div className="health-score-display">
-                      <div className="score-badge health">
-                        <span className="score-icon">💪</span>
-                        <span className="score-number">{displayedSnippet.healthScore}</span>
-                        <span className="score-max">/10</span>
+                  {/* 점수 배지들 */}
+                  <div className="snippet-scores">
+                    {displayedSnippet.aiScore && (
+                      <div className="ai-score-display">
+                        <div className="score-badge">
+                          <span className="score-number">{displayedSnippet.aiScore.total}</span>
+                          <span className="score-max">/100</span>
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
+                    
+                    {displayedSnippet.healthScore && (
+                      <div className="health-score-display">
+                        <div className="score-badge health">
+                          <span className="score-number">{displayedSnippet.healthScore}</span>
+                          <span className="score-max">/10</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
                 
                 <div className="snippet-body">

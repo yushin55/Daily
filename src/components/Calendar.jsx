@@ -53,10 +53,15 @@ function Calendar({ onDateClick, snippets, schedules, tomorrowPlans }) {
     const isToday = day === 18 && currentDate.getMonth() === 9; // October 18
 
     // 날짜의 스니펫들의 점수 계산
-    const snippetScores = dateSnippets ? dateSnippets.map(s => ({
-      ai: s.aiScore || 0,
-      health: s.healthScore || 0
-    })) : [];
+    const snippetScores = dateSnippets ? dateSnippets.map(s => {
+      // aiScore와 healthScore가 객체(total 필드 포함) 또는 숫자일 수 있음
+      const aiValue = typeof s.aiScore === 'object' ? (s.aiScore?.total || 0) : (s.aiScore || 0);
+      const healthValue = typeof s.healthScore === 'object' ? (s.healthScore?.total || 0) : (s.healthScore || 0);
+      return {
+        ai: aiValue,
+        health: healthValue
+      };
+    }) : [];
     const avgAiScore = snippetScores.length > 0 ? Math.round(snippetScores.reduce((sum, s) => sum + s.ai, 0) / snippetScores.length) : 0;
     const avgHealthScore = snippetScores.length > 0 ? Math.round(snippetScores.reduce((sum, s) => sum + s.health, 0) / snippetScores.length * 10) / 10 : 0;
 

@@ -37,7 +37,7 @@
 }
 
 .close-btn:hover {
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   color: white;
   transform: rotate(90deg);
   box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
@@ -45,7 +45,7 @@
 
 .admin-header h1 {
   font-size: 2.5rem;
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -148,7 +148,7 @@
 .weight-fill {
   height: 100%;
   transition: all 0.3s;
-  background: linear-gradient(90deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
 }
 
 .total-weight-indicator span {
@@ -159,7 +159,7 @@
 }
 
 .total-weight-indicator span.valid {
-  color: #10b981;
+  color: #ff6b35;
 }
 
 .total-weight-indicator span.invalid {
@@ -235,7 +235,7 @@
 
 .criteria-fill {
   height: 100%;
-  background: linear-gradient(90deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   transition: width 0.3s;
 }
 
@@ -298,7 +298,7 @@
 
 .add-member-btn {
   padding: 10px 20px;
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   color: white;
   border: none;
   border-radius: 8px;
@@ -460,7 +460,7 @@
 
 .save-api-btn {
   padding: 12px 24px;
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   color: white;
   border: none;
   border-radius: 8px;
@@ -514,8 +514,8 @@
 }
 
 .status-indicator.active {
-  background: #10b981;
-  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+  background: #ff6b35;
+  box-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
 }
 
 .status-text {
@@ -527,7 +527,7 @@
 .save-btn {
   width: 100%;
   padding: 15px;
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   color: white;
   border: none;
   border-radius: 12px;
@@ -675,7 +675,7 @@
 }
 
 .chart-bar.current {
-  background: linear-gradient(180deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
 }
 
 .bar-value {
@@ -961,7 +961,7 @@
 }
 
 .sim-item.gain {
-  border-left: 4px solid #10b981;
+  border-left: 4px solid #ff6b35;
 }
 
 .sim-item.loss {
@@ -974,7 +974,7 @@
 }
 
 .sim-item.gain .sim-value {
-  color: #10b981;
+  color: #ff6b35;
 }
 
 .sim-item.loss .sim-value {
@@ -984,7 +984,7 @@
 /* ADM-006: ??�� 커스?�마?�징 */
 .add-field-btn {
   padding: 12px 24px;
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background: #ff6b35;
   color: white;
   border: none;
   border-radius: 12px;
@@ -996,7 +996,7 @@
 
 .add-field-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
 }
 
 .custom-fields-list {
@@ -1018,7 +1018,7 @@
 .field-order {
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   color: white;
   border-radius: 50%;
   display: flex;
@@ -1143,7 +1143,7 @@
 .integration-icon {
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -1206,7 +1206,7 @@
 }
 
 .integration-toggle input:checked + .toggle-slider {
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
 }
 
 .integration-toggle input:checked + .toggle-slider:before {
@@ -1366,7 +1366,7 @@
 
 .score-bar {
   height: 100%;
-  background: linear-gradient(90deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   transition: width 0.5s ease;
 }
 
@@ -1446,7 +1446,7 @@
 
 .chart-bar-fill {
   height: 100%;
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -1490,7 +1490,7 @@
 }
 
 .type-btn.active {
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   color: white;
   border-color: transparent;
 }
@@ -1653,7 +1653,7 @@
 
 .progress-bar {
   height: 100%;
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   transition: width 0.5s ease;
 }
 
@@ -1750,7 +1750,7 @@
 }
 
 .report-main-toggle input:checked + .toggle-slider {
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
 }
 
 .report-main-toggle input:checked + .toggle-slider:before {
@@ -1926,7 +1926,7 @@
 }
 
 .preview-header {
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: #ff6b35;
   color: white;
   padding: 20px;
 }
@@ -2024,3 +2024,4 @@
 .test-send-btn:hover {
   background: #f8fafc;
 }
+
