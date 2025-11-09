@@ -62,7 +62,7 @@
   margin: 0;
 }
 
-/* ?�?�어???�?�머 */
+/* ?�?�어???�?�머 */
 .time-attack-timer {
   display: flex;
   align-items: center;
@@ -382,7 +382,7 @@
   line-height: 1.6;
 }
 
-/* AI ?�수 미리보기 */
+/* AI ?�수 미리보기 */
 .ai-score-preview {
   margin-top: 20px;
   padding: 20px;
@@ -495,6 +495,58 @@
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
+/* Health Check Section */
+.health-check-section {
+  padding: 20px 24px;
+  border-top: 1px solid #e0e0e0;
+  background-color: #fafafa;
+}
+
+.health-check-section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.health-check-description {
+  font-size: 13px;
+  color: #666;
+  margin: 0 0 16px 0;
+}
+
+.health-score-selector {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.health-score-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+  background-color: white;
+  font-size: 16px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.health-score-btn:hover {
+  border-color: #ff6b35;
+  color: #ff6b35;
+  transform: translateY(-2px);
+}
+
+.health-score-btn.active {
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  border-color: #ff6b35;
+  color: white;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
 @media (max-width: 768px) {
   .modal-content {
     max-width: 100%;
@@ -503,5 +555,10 @@
 
   .snippet-textarea {
     min-height: 200px;
+  }
+  
+  .health-score-btn {
+    width: calc((100% - 72px) / 10);
+    min-width: 36px;
   }
 }

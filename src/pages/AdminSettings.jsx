@@ -50,15 +50,6 @@ function AdminSettings({ onClose }) {
     }
   });
 
-  // ADM-005: 보상 시스템
-  const [rewardSystem, setRewardSystem] = useState({
-    dailyBonus: 10,
-    weeklyBonus: 50,
-    monthlyBonus: 200,
-    missedPenalty: -5,
-    lateSubmissionPenalty: -3
-  });
-
   // ADM-006: 커스터마이징 항목
   const [customFields, setCustomFields] = useState([
     { id: 1, name: 'What', maxScore: 20, required: true, placeholder: '무엇을 했나요?' },
@@ -68,22 +59,21 @@ function AdminSettings({ onClose }) {
     { id: 5, name: 'Tomorrow', maxScore: 20, required: true, placeholder: '내일 할 일' }
   ]);
 
-  // INT-001: Todo 연동 설정
+  // INT-001: 연동 설정
   const [todoIntegrations, setTodoIntegrations] = useState({
-    notion: { enabled: false, apiKey: '', databaseId: '' },
-    todoist: { enabled: false, apiKey: '' },
-    supabase: { enabled: false, url: '', apiKey: '' }
+    hanaCalendar: { enabled: false, apiKey: '', syncId: '' },
+    hanaERP: { enabled: false, apiKey: '', serverId: '' }
   });
 
   // ORG-001: 기업 내 점수 비교 데이터
   const [orgComparison, setOrgComparison] = useState({
-    company: '코코네 주식회사',
+    company: '한화큐셀',
     departments: [
-      { id: 1, name: '개발팀', avgScore: 82, memberCount: 15, growthRate: 8 },
-      { id: 2, name: '디자인팀', avgScore: 78, memberCount: 8, growthRate: 5 },
-      { id: 3, name: '기획팀', avgScore: 85, memberCount: 10, growthRate: 12 },
-      { id: 4, name: '마케팅팀', avgScore: 75, memberCount: 12, growthRate: -2 },
-      { id: 5, name: '경영지원팀', avgScore: 80, memberCount: 6, growthRate: 6 }
+      { id: 1, name: '태양광사업부', avgScore: 92, memberCount: 28, growthRate: 15 },
+      { id: 2, name: '에너지솔루션팀', avgScore: 88, memberCount: 18, growthRate: 8 },
+      { id: 3, name: '경영관리팀', avgScore: 85, memberCount: 12, growthRate: 5 },
+      { id: 4, name: '기술개발팀', avgScore: 90, memberCount: 22, growthRate: 12 },
+      { id: 5, name: '영업마케팅팀', avgScore: 84, memberCount: 14, growthRate: 3 }
     ]
   });
 
@@ -91,16 +81,16 @@ function AdminSettings({ onClose }) {
   const [orgRankings, setOrgRankings] = useState({
     type: 'company', // 'company', 'school', 'department'
     rankings: [
-      { rank: 1, name: 'Hanwha Q CELLS', avgScore: 92, memberCount: 58, completionRate: 96 },
-      { rank: 2, name: 'Hanwha Vision', avgScore: 90, memberCount: 45, completionRate: 95 },
-      { rank: 3, name: 'Hanwha Power Systems', avgScore: 89, memberCount: 62, completionRate: 94 },
-      { rank: 4, name: 'Hanwha Aerospace', avgScore: 88, memberCount: 78, completionRate: 93 },
-      { rank: 5, name: 'Vision Nexus', avgScore: 87, memberCount: 42, completionRate: 92 },
-      { rank: 6, name: 'Samsung Electronics', avgScore: 86, memberCount: 180, completionRate: 91 },
-      { rank: 7, name: 'LG Electronics', avgScore: 85, memberCount: 165, completionRate: 88 },
-      { rank: 8, name: 'SK Innovation', avgScore: 82, memberCount: 140, completionRate: 86 },
-      { rank: 9, name: 'Hyundai Motors', avgScore: 80, memberCount: 220, completionRate: 85 },
-      { rank: 10, name: 'Naver', avgScore: 79, memberCount: 142, completionRate: 84 }
+      { rank: 1, name: '한화큐셀', avgScore: 92, memberCount: 58, completionRate: 96 },
+      { rank: 2, name: '한화비전', avgScore: 90, memberCount: 45, completionRate: 95 },
+      { rank: 3, name: '한화파워시스템', avgScore: 89, memberCount: 62, completionRate: 94 },
+      { rank: 4, name: '한화에어로스페이스', avgScore: 88, memberCount: 78, completionRate: 93 },
+      { rank: 5, name: '비전넥스트', avgScore: 87, memberCount: 42, completionRate: 92 },
+      { rank: 6, name: '한화에스앤시', avgScore: 86, memberCount: 95, completionRate: 91 },
+      { rank: 7, name: '한화시스템', avgScore: 85, memberCount: 108, completionRate: 88 },
+      { rank: 8, name: '한화토탈에너지', avgScore: 82, memberCount: 72, completionRate: 86 },
+      { rank: 9, name: '한화디펜스', avgScore: 80, memberCount: 110, completionRate: 85 },
+      { rank: 10, name: '한화큐셀베트남', avgScore: 79, memberCount: 64, completionRate: 84 }
     ]
   });
 
@@ -200,16 +190,40 @@ function AdminSettings({ onClose }) {
           API 설정
         </button>
         <button
+          className={`tab-btn ${activeTab === 'performance' ? 'active' : ''}`}
+          onClick={() => setActiveTab('performance')}
+        >
+          성과 분석
+        </button>
+        <button
+          className={`tab-btn ${activeTab === 'customize' ? 'active' : ''}`}
+          onClick={() => setActiveTab('customize')}
+        >
+          항목 커스터마이징
+        </button>
+        <button
+          className={`tab-btn ${activeTab === 'integrations' ? 'active' : ''}`}
+          onClick={() => setActiveTab('integrations')}
+        >
+          연동 설정
+        </button>
+        <button
+          className={`tab-btn ${activeTab === 'orgComparison' ? 'active' : ''}`}
+          onClick={() => setActiveTab('orgComparison')}
+        >
+          부서별 비교
+        </button>
+        <button
           className={`tab-btn ${activeTab === 'orgRankings' ? 'active' : ''}`}
           onClick={() => setActiveTab('orgRankings')}
         >
           조직 순위
         </button>
         <button
-          className={`tab-btn ${activeTab === 'performance' ? 'active' : ''}`}
-          onClick={() => setActiveTab('performance')}
+          className={`tab-btn ${activeTab === 'reports' ? 'active' : ''}`}
+          onClick={() => setActiveTab('reports')}
         >
-          성과 분석
+          주간 리포트
         </button>
       </div>
 
@@ -263,7 +277,7 @@ function AdminSettings({ onClose }) {
             </div>
 
             <button className="save-btn" onClick={handleSaveSettings}>
-              💾 설정 저장
+              설정 저장
             </button>
           </div>
         )}
@@ -343,7 +357,7 @@ function AdminSettings({ onClose }) {
             </div>
 
             <button className="save-btn" onClick={handleSaveSettings}>
-              💾 팀 정보 저장
+              팀 정보 저장
             </button>
           </div>
         )}
@@ -529,89 +543,6 @@ function AdminSettings({ onClose }) {
           </div>
         )}
 
-        {/* ADM-005: 당근과 채찍 시스템 */}
-        {activeTab === 'rewards' && (
-          <div className="rewards-system">
-            <h2>보상 시스템 설정</h2>
-            <p className="description">목표 달성 시 포인트 보상과 미작성 시 감점을 설정하세요</p>
-
-            <div className="rewards-section">
-              <h3>🎁 보상 설정 (당근)</h3>
-              <div className="reward-items">
-                <div className="reward-item">
-                  <label>데일리 작성 완료</label>
-                  <input
-                    type="number"
-                    value={rewardSystem.dailyBonus}
-                    onChange={(e) => setRewardSystem(prev => ({ ...prev, dailyBonus: parseInt(e.target.value) || 0 }))}
-                  />
-                  <span className="points-label">포인트</span>
-                </div>
-                <div className="reward-item">
-                  <label>주간 연속 작성</label>
-                  <input
-                    type="number"
-                    value={rewardSystem.weeklyBonus}
-                    onChange={(e) => setRewardSystem(prev => ({ ...prev, weeklyBonus: parseInt(e.target.value) || 0 }))}
-                  />
-                  <span className="points-label">포인트</span>
-                </div>
-                <div className="reward-item">
-                  <label>월간 우수 스니펫</label>
-                  <input
-                    type="number"
-                    value={rewardSystem.monthlyBonus}
-                    onChange={(e) => setRewardSystem(prev => ({ ...prev, monthlyBonus: parseInt(e.target.value) || 0 }))}
-                  />
-                  <span className="points-label">포인트</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="penalties-section">
-              <h3>⚠️ 감점 설정 (채찍)</h3>
-              <div className="penalty-items">
-                <div className="penalty-item">
-                  <label>미작성</label>
-                  <input
-                    type="number"
-                    value={rewardSystem.missedPenalty}
-                    onChange={(e) => setRewardSystem(prev => ({ ...prev, missedPenalty: parseInt(e.target.value) || 0 }))}
-                  />
-                  <span className="points-label">포인트</span>
-                </div>
-                <div className="penalty-item">
-                  <label>지각 제출</label>
-                  <input
-                    type="number"
-                    value={rewardSystem.lateSubmissionPenalty}
-                    onChange={(e) => setRewardSystem(prev => ({ ...prev, lateSubmissionPenalty: parseInt(e.target.value) || 0 }))}
-                  />
-                  <span className="points-label">포인트</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="reward-preview">
-              <h3>포인트 시뮬레이션</h3>
-              <div className="simulation-box">
-                <div className="sim-item gain">
-                  <span>7일 연속 작성 시</span>
-                  <span className="sim-value">+{rewardSystem.dailyBonus * 7 + rewardSystem.weeklyBonus}P</span>
-                </div>
-                <div className="sim-item loss">
-                  <span>3일 미작성 시</span>
-                  <span className="sim-value">{rewardSystem.missedPenalty * 3}P</span>
-                </div>
-              </div>
-            </div>
-
-            <button className="save-btn" onClick={handleSaveSettings}>
-              💾 보상 시스템 저장
-            </button>
-          </div>
-        )}
-
         {/* ADM-006: 스니펫 항목 커스터마이징 */}
         {activeTab === 'customize' && (
           <div className="customize-fields">
@@ -699,56 +630,55 @@ function AdminSettings({ onClose }) {
             </div>
 
             <button className="save-btn" onClick={handleSaveSettings}>
-              💾 항목 설정 저장
+              항목 설정 저장
             </button>
           </div>
         )}
 
-        {/* INT-001: Todo 연동 설정 */}
+        {/* INT-001: 연동 설정 */}
         {activeTab === 'integrations' && (
           <div className="integrations-settings">
             <h2>외부 서비스 연동</h2>
-            <p className="description">Notion, Todoist, Supabase와 연동하여 Today/Tomorrow를 자동으로 가져옵니다</p>
+            <p className="description">한화 캘린더 및 차세대 ERP 시스템과 연동하여 일정 및 데이터를 자동으로 동기화합니다</p>
 
             <div className="integration-cards">
-              {/* Notion 연동 */}
+              {/* 한화 캘린더 연동 */}
               <div className="integration-card">
                 <div className="integration-header">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" alt="Notion" className="integration-logo" />
                   <div className="integration-info">
-                    <h3>Notion</h3>
-                    <p>Notion 데이터베이스와 동기화</p>
+                    <h3>한화 캘린더</h3>
+                    <p>한화 캘린더 시스템과 동기화</p>
                   </div>
                   <label className="integration-toggle">
                     <input
                       type="checkbox"
-                      checked={todoIntegrations.notion.enabled}
+                      checked={todoIntegrations.hanaCalendar.enabled}
                       onChange={(e) => setTodoIntegrations(prev => ({
                         ...prev,
-                        notion: { ...prev.notion, enabled: e.target.checked }
+                        hanaCalendar: { ...prev.hanaCalendar, enabled: e.target.checked }
                       }))}
                     />
                     <span className="toggle-slider"></span>
                   </label>
                 </div>
-                {todoIntegrations.notion.enabled && (
+                {todoIntegrations.hanaCalendar.enabled && (
                   <div className="integration-config">
                     <input
                       type="password"
-                      placeholder="Notion API Key"
-                      value={todoIntegrations.notion.apiKey}
+                      placeholder="한화 캘린더 API Key"
+                      value={todoIntegrations.hanaCalendar.apiKey}
                       onChange={(e) => setTodoIntegrations(prev => ({
                         ...prev,
-                        notion: { ...prev.notion, apiKey: e.target.value }
+                        hanaCalendar: { ...prev.hanaCalendar, apiKey: e.target.value }
                       }))}
                     />
                     <input
                       type="text"
-                      placeholder="Database ID"
-                      value={todoIntegrations.notion.databaseId}
+                      placeholder="동기화 ID"
+                      value={todoIntegrations.hanaCalendar.syncId}
                       onChange={(e) => setTodoIntegrations(prev => ({
                         ...prev,
-                        notion: { ...prev.notion, databaseId: e.target.value }
+                        hanaCalendar: { ...prev.hanaCalendar, syncId: e.target.value }
                       }))}
                     />
                     <button className="test-connection-btn">연결 테스트</button>
@@ -756,80 +686,43 @@ function AdminSettings({ onClose }) {
                 )}
               </div>
 
-              {/* Todoist 연동 */}
+              {/* 차세대 ERP 연동 */}
               <div className="integration-card">
                 <div className="integration-header">
-                  <div className="integration-icon">✓</div>
                   <div className="integration-info">
-                    <h3>Todoist</h3>
-                    <p>Todoist 작업 목록 동기화</p>
+                    <h3>차세대 ERP 시스템</h3>
+                    <p>한화 차세대 ERP와 연동</p>
                   </div>
                   <label className="integration-toggle">
                     <input
                       type="checkbox"
-                      checked={todoIntegrations.todoist.enabled}
+                      checked={todoIntegrations.hanaERP.enabled}
                       onChange={(e) => setTodoIntegrations(prev => ({
                         ...prev,
-                        todoist: { ...prev.todoist, enabled: e.target.checked }
+                        hanaERP: { ...prev.hanaERP, enabled: e.target.checked }
                       }))}
                     />
                     <span className="toggle-slider"></span>
                   </label>
                 </div>
-                {todoIntegrations.todoist.enabled && (
+                {todoIntegrations.hanaERP.enabled && (
                   <div className="integration-config">
                     <input
                       type="password"
-                      placeholder="Todoist API Token"
-                      value={todoIntegrations.todoist.apiKey}
+                      placeholder="ERP API Key"
+                      value={todoIntegrations.hanaERP.apiKey}
                       onChange={(e) => setTodoIntegrations(prev => ({
                         ...prev,
-                        todoist: { ...prev.todoist, apiKey: e.target.value }
-                      }))}
-                    />
-                    <button className="test-connection-btn">연결 테스트</button>
-                  </div>
-                )}
-              </div>
-
-              {/* Supabase 연동 */}
-              <div className="integration-card">
-                <div className="integration-header">
-                  <div className="integration-icon">⚡</div>
-                  <div className="integration-info">
-                    <h3>Supabase</h3>
-                    <p>Supabase DB와 실시간 동기화</p>
-                  </div>
-                  <label className="integration-toggle">
-                    <input
-                      type="checkbox"
-                      checked={todoIntegrations.supabase.enabled}
-                      onChange={(e) => setTodoIntegrations(prev => ({
-                        ...prev,
-                        supabase: { ...prev.supabase, enabled: e.target.checked }
-                      }))}
-                    />
-                    <span className="toggle-slider"></span>
-                  </label>
-                </div>
-                {todoIntegrations.supabase.enabled && (
-                  <div className="integration-config">
-                    <input
-                      type="url"
-                      placeholder="Supabase URL"
-                      value={todoIntegrations.supabase.url}
-                      onChange={(e) => setTodoIntegrations(prev => ({
-                        ...prev,
-                        supabase: { ...prev.supabase, url: e.target.value }
+                        hanaERP: { ...prev.hanaERP, apiKey: e.target.value }
                       }))}
                     />
                     <input
-                      type="password"
-                      placeholder="Supabase API Key"
-                      value={todoIntegrations.supabase.apiKey}
+                      type="text"
+                      placeholder="서버 ID"
+                      value={todoIntegrations.hanaERP.serverId}
                       onChange={(e) => setTodoIntegrations(prev => ({
                         ...prev,
-                        supabase: { ...prev.supabase, apiKey: e.target.value }
+                        hanaERP: { ...prev.hanaERP, serverId: e.target.value }
                       }))}
                     />
                     <button className="test-connection-btn">연결 테스트</button>
@@ -839,7 +732,7 @@ function AdminSettings({ onClose }) {
             </div>
 
             <button className="save-btn" onClick={handleSaveSettings}>
-              💾 연동 설정 저장
+              연동 설정 저장
             </button>
           </div>
         )}
@@ -852,7 +745,6 @@ function AdminSettings({ onClose }) {
 
             <div className="company-info-card">
               <div className="company-header">
-                <span className="company-icon">🏢</span>
                 <h3>{orgComparison.company}</h3>
               </div>
               <div className="company-stats">
@@ -945,19 +837,19 @@ function AdminSettings({ onClose }) {
                 className={`type-btn ${orgRankings.type === 'company' ? 'active' : ''}`}
                 onClick={() => setOrgRankings(prev => ({ ...prev, type: 'company' }))}
               >
-                🏢 기업별
+                기업별
               </button>
               <button 
                 className={`type-btn ${orgRankings.type === 'school' ? 'active' : ''}`}
                 onClick={() => setOrgRankings(prev => ({ ...prev, type: 'school' }))}
               >
-                🎓 학교별
+                학교별
               </button>
               <button 
                 className={`type-btn ${orgRankings.type === 'department' ? 'active' : ''}`}
                 onClick={() => setOrgRankings(prev => ({ ...prev, type: 'department' }))}
               >
-                📁 부서별
+                부서별
               </button>
             </div>
 
@@ -1215,7 +1107,7 @@ function AdminSettings({ onClose }) {
                     ✉️ 테스트 발송
                   </button>
                   <button className="save-btn" onClick={handleSaveSettings}>
-                    💾 설정 저장
+                    설정 저장
                   </button>
                 </div>
               </>

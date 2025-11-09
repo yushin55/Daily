@@ -6,7 +6,9 @@
 
 .admin-header {
   margin-bottom: 40px;
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .admin-header-content {
@@ -17,13 +19,13 @@
   margin: 0 auto;
 }
 
-.admin-close-btn {
-  background: rgba(227, 25, 55, 0.1);
-  border: 2px solid #f7931e;
-  color: #f7931e;
-  font-size: 1.5rem;
-  width: 48px;
-  height: 48px;
+.close-btn {
+  background: transparent;
+  border: 2px solid #ff6b35;
+  color: #ff6b35;
+  font-size: 2rem;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s;
@@ -31,12 +33,14 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  line-height: 1;
 }
 
-.admin-close-btn:hover {
-  background: #f7931e;
+.close-btn:hover {
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
   color: white;
   transform: rotate(90deg);
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
 }
 
 .admin-header h1 {

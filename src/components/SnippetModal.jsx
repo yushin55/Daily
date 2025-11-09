@@ -63,6 +63,7 @@ function SnippetModal({ date, snippet, onSave, onClose, timeAttackMode = false }
   const [content, setContent] = useState(snippet?.content || '');
   const [showTemplates, setShowTemplates] = useState(false);
   const [aiScore, setAiScore] = useState(snippet?.aiScore || null);
+  const [healthScore, setHealthScore] = useState(snippet?.healthScore || 5);
   const [timeLeft, setTimeLeft] = useState(300); // 5분 = 300초
   const [isTimeAttack, setIsTimeAttack] = useState(timeAttackMode);
 
@@ -112,6 +113,7 @@ function SnippetModal({ date, snippet, onSave, onClose, timeAttackMode = false }
       snippetType, 
       content,
       aiScore: calculatedScore,
+      healthScore,
       submittedAt: new Date().toISOString()
     });
     onClose();
@@ -284,7 +286,6 @@ function SnippetModal({ date, snippet, onSave, onClose, timeAttackMode = false }
                 className={`type-btn ${snippetType === 'daily' ? 'active' : ''}`}
                 onClick={() => setSnippetType('daily')}
               >
-                <span className="type-icon">📅</span>
                 Daily
               </button>
               <button
@@ -292,7 +293,6 @@ function SnippetModal({ date, snippet, onSave, onClose, timeAttackMode = false }
                 className={`type-btn ${snippetType === 'weekly' ? 'active' : ''}`}
                 onClick={() => setSnippetType('weekly')}
               >
-                <span className="type-icon">📊</span>
                 Weekly
               </button>
               <button
@@ -300,7 +300,6 @@ function SnippetModal({ date, snippet, onSave, onClose, timeAttackMode = false }
                 className={`type-btn ${snippetType === 'monthly' ? 'active' : ''}`}
                 onClick={() => setSnippetType('monthly')}
               >
-                <span className="type-icon">📆</span>
                 Monthly
               </button>
               <button
@@ -308,7 +307,6 @@ function SnippetModal({ date, snippet, onSave, onClose, timeAttackMode = false }
                 className={`type-btn ${snippetType === 'yearly' ? 'active' : ''}`}
                 onClick={() => setSnippetType('yearly')}
               >
-                <span className="type-icon">🗓️</span>
                 Yearly
               </button>
             </div>
@@ -317,9 +315,6 @@ function SnippetModal({ date, snippet, onSave, onClose, timeAttackMode = false }
           <div className="form-group">
             <label htmlFor="snippet-content">
               {getSnippetTypeLabel(snippetType)} 내용
-              {isTimeAttack && (
-                <span className="time-attack-hint">⚡ 빠르게 핵심만 작성하세요!</span>
-              )}
             </label>
             <textarea
               id="snippet-content"
@@ -346,7 +341,7 @@ Tomorrow (내일 할 일)
           {/* USR-002: AI 점수 미리보기 */}
           {content.length > 20 && (
             <div className="ai-score-preview">
-              <h4>🤖 AI 예상 점수</h4>
+              <h4>AI 예상 점수</h4>
               {(() => {
                 const previewScore = calculateAIScore(content);
                 return (
@@ -368,6 +363,22 @@ Tomorrow (내일 할 일)
               })()}
             </div>
           )}
+        </div>
+        
+        <div className="health-check-section">
+          <h3>Health Check (1-10)</h3>
+          <p className="health-check-description">오늘 컨디션은 어떠셨나요?</p>
+          <div className="health-score-selector">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(score => (
+              <button
+                key={score}
+                className={`health-score-btn ${healthScore === score ? 'active' : ''}`}
+                onClick={() => setHealthScore(score)}
+              >
+                {score}
+              </button>
+            ))}
+          </div>
         </div>
         
         <div className="modal-footer">

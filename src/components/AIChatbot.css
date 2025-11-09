@@ -279,7 +279,7 @@
   height: 24px;
 }
 
-/* ?�크롤바 ?��???*/
+/* ?�크롤바 ?��???*/
 .chatbot-messages::-webkit-scrollbar {
   width: 6px;
 }

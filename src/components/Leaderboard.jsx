@@ -9,12 +9,16 @@ function Leaderboard() {
   const allData = {
     monthly: {
       companies: [
-        { rank: 1, team: '삼성 마케팅부서', score: 485, type: 'company' },
-        { rank: 2, team: 'LG전자 통신부서', score: 445, type: 'company' },
-        { rank: 3, team: '현대자동차 개발팀', score: 398, type: 'company' },
-        { rank: 4, team: '네이버 클라우드', score: 367, type: 'company' },
-        { rank: 5, team: '카카오 AI연구소', score: 342, type: 'company' },
-        { rank: 6, team: 'SK텔레콤 R&D', score: 298, type: 'company' }
+        { rank: 1, team: '한화큐셀', score: 485, type: 'company' },
+        { rank: 2, team: '한화비전', score: 445, type: 'company' },
+        { rank: 3, team: '한화파워시스템', score: 398, type: 'company' },
+        { rank: 4, team: '한화에어로스페이스', score: 367, type: 'company' },
+        { rank: 5, team: '비전넥스트', score: 342, type: 'company' },
+        { rank: 6, team: '삼성전자', score: 320, type: 'company' },
+        { rank: 7, team: 'LG전자', score: 315, type: 'company' },
+        { rank: 8, team: 'SK이노베이션', score: 298, type: 'company' },
+        { rank: 9, team: '현대자동차', score: 285, type: 'company' },
+        { rank: 10, team: '네이버', score: 272, type: 'company' }
       ],
       schools: [
         { rank: 1, team: 'ENTeam', score: 435, type: 'school' },
@@ -31,12 +35,16 @@ function Leaderboard() {
     },
     weekly: {
       companies: [
-        { rank: 1, team: '삼성 마케팅부서', score: 95, type: 'company' },
-        { rank: 2, team: 'LG전자 통신부서', score: 89, type: 'company' },
-        { rank: 3, team: '카카오 AI연구소', score: 82, type: 'company' },
-        { rank: 4, team: '현대자동차 개발팀', score: 78, type: 'company' },
-        { rank: 5, team: '네이버 클라우드', score: 71, type: 'company' },
-        { rank: 6, team: 'SK텔레콤 R&D', score: 64, type: 'company' }
+        { rank: 1, team: '한화큐셀', score: 95, type: 'company' },
+        { rank: 2, team: '한화비전', score: 89, type: 'company' },
+        { rank: 3, team: '한화파워시스템', score: 82, type: 'company' },
+        { rank: 4, team: '한화에어로스페이스', score: 78, type: 'company' },
+        { rank: 5, team: '비전넥스트', score: 71, type: 'company' },
+        { rank: 6, team: '삼성전자', score: 68, type: 'company' },
+        { rank: 7, team: 'LG전자', score: 64, type: 'company' },
+        { rank: 8, team: 'SK이노베이션', score: 60, type: 'company' },
+        { rank: 9, team: '현대자동차', score: 55, type: 'company' },
+        { rank: 10, team: '네이버', score: 52, type: 'company' }
       ],
       schools: [
         { rank: 1, team: 'ENTeam', score: 87, type: 'school' },
