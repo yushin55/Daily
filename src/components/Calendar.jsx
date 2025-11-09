@@ -69,13 +69,8 @@ function Calendar({ onDateClick, snippets, schedules, tomorrowPlans }) {
         <span className="day-number">{day}</span>
         <div className="day-indicators">
           {viewMode === 'snippet' && snippetCount > 0 && (
-            <div className="day-scores">
-              <div className="score-badge ai">
-                <span className="score-value">{avgAiScore}</span>
-              </div>
-              <div className="score-badge health">
-                <span className="score-value">{avgHealthScore}</span>
-              </div>
+            <div className="day-snippet-info">
+              <span className="snippet-score-text">AI: {avgAiScore} / 헬스: {avgHealthScore}</span>
             </div>
           )}
           {viewMode === 'schedule' && scheduleCount > 0 && (

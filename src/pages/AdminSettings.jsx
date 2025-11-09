@@ -466,81 +466,123 @@ function AdminSettings({ onClose }) {
         {activeTab === 'performance' && (
           <div className="performance-dashboard">
             <h2>팀 퍼포먼스 대시보드</h2>
-            <p className="description">팀의 주간/월간 성과를 확인하세요</p>
+            <p className="description">팀의 주간/월간 성과를 분석하세요</p>
 
-            <div className="performance-cards">
-              <div className="perf-card">
-                <div className="perf-icon">📊</div>
-                <div className="perf-content">
-                  <h3>주간 평균 점수</h3>
-                  <div className="perf-value">{performanceData.weekly.avgScore}점</div>
-                  <div className="perf-change positive">+5점</div>
+            <div className="performance-overview">
+              <div className="overview-item">
+                <div className="overview-icon">📊</div>
+                <div className="overview-content">
+                  <span className="overview-label">주간 평균 점수</span>
+                  <div className="overview-value-group">
+                    <span className="overview-value">{performanceData.weekly.avgScore}</span>
+                    <span className="overview-unit">점</span>
+                  </div>
+                  <span className="overview-change positive">+5점 상승</span>
                 </div>
               </div>
 
-              <div className="perf-card">
-                <div className="perf-icon">✍️</div>
-                <div className="perf-content">
-                  <h3>주간 작성률</h3>
-                  <div className="perf-value">{performanceData.weekly.completionRate}%</div>
-                  <div className="perf-change positive">+3%</div>
+              <div className="overview-item">
+                <div className="overview-icon">📝</div>
+                <div className="overview-content">
+                  <span className="overview-label">작성 완료율</span>
+                  <div className="overview-value-group">
+                    <span className="overview-value">{performanceData.weekly.completionRate}</span>
+                    <span className="overview-unit">%</span>
+                  </div>
+                  <span className="overview-change positive">+3% 증가</span>
                 </div>
               </div>
 
-              <div className="perf-card">
-                <div className="perf-icon">📈</div>
-                <div className="perf-content">
-                  <h3>주간 성장률</h3>
-                  <div className="perf-value">+{performanceData.weekly.growthRate}%</div>
-                  <div className="perf-change positive">향상 중</div>
+              <div className="overview-item">
+                <div className="overview-icon">📈</div>
+                <div className="overview-content">
+                  <span className="overview-label">주간 성장률</span>
+                  <div className="overview-value-group">
+                    <span className="overview-value">+{performanceData.weekly.growthRate}</span>
+                    <span className="overview-unit">%</span>
+                  </div>
+                  <span className="overview-change positive">지속 향상 중</span>
+                </div>
+              </div>
+
+              <div className="overview-item">
+                <div className="overview-icon">🎯</div>
+                <div className="overview-content">
+                  <span className="overview-label">월간 평균 점수</span>
+                  <div className="overview-value-group">
+                    <span className="overview-value">{performanceData.monthly.avgScore}</span>
+                    <span className="overview-unit">점</span>
+                  </div>
+                  <span className="overview-change neutral">기준점</span>
                 </div>
               </div>
             </div>
 
-            <div className="chart-section">
-              <h3>월간 트렌드</h3>
-              <div className="chart-placeholder">
+            <div className="trend-section">
+              <h3>월간 점수 트렌드</h3>
+              <div className="trend-chart">
                 <div className="chart-bars">
-                  <div className="chart-bar" style={{ height: '60%' }}>
-                    <span className="bar-label">1주차</span>
-                    <span className="bar-value">72점</span>
-                  </div>
-                  <div className="chart-bar" style={{ height: '70%' }}>
-                    <span className="bar-label">2주차</span>
-                    <span className="bar-value">75점</span>
-                  </div>
-                  <div className="chart-bar" style={{ height: '85%' }}>
-                    <span className="bar-label">3주차</span>
-                    <span className="bar-value">78점</span>
-                  </div>
-                  <div className="chart-bar active" style={{ height: '95%' }}>
-                    <span className="bar-label">4주차</span>
-                    <span className="bar-value">82점</span>
-                  </div>
+                  {[
+                    { week: '1주차', score: 72 },
+                    { week: '2주차', score: 75 },
+                    { week: '3주차', score: 78 },
+                    { week: '4주차', score: 82 }
+                  ].map((data, idx) => (
+                    <div key={idx} className="chart-column">
+                      <div 
+                        className={`chart-bar ${idx === 3 ? 'current' : ''}`}
+                        style={{ height: `${(data.score / 100) * 100}%` }}
+                      >
+                        <span className="bar-value">{data.score}</span>
+                      </div>
+                      <span className="chart-label">{data.week}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="chart-axis">
+                  <div className="axis-mark">100점</div>
+                  <div className="axis-mark">50점</div>
+                  <div className="axis-mark">0점</div>
                 </div>
               </div>
             </div>
 
-            <div className="team-rankings">
-              <h3>팀원별 순위</h3>
-              <div className="ranking-list">
-                <div className="ranking-item rank-1">
-                  <span className="rank-badge">🥇</span>
-                  <span className="member-name">김개발</span>
-                  <span className="member-score">92점</span>
-                  <span className="member-rate">100%</span>
+            <div className="team-stats-section">
+              <h3>팀원별 성과</h3>
+              <div className="team-stats-table">
+                <div className="stats-header">
+                  <div className="stat-col-rank">순위</div>
+                  <div className="stat-col-name">이름</div>
+                  <div className="stat-col-score">평균 점수</div>
+                  <div className="stat-col-rate">작성률</div>
+                  <div className="stat-col-trend">추이</div>
                 </div>
-                <div className="ranking-item rank-2">
-                  <span className="rank-badge">🥈</span>
-                  <span className="member-name">이디자인</span>
-                  <span className="member-score">88점</span>
-                  <span className="member-rate">95%</span>
+                <div className="stats-row rank-1">
+                  <div className="stat-col-rank">🥇</div>
+                  <div className="stat-col-name">김개발</div>
+                  <div className="stat-col-score">92</div>
+                  <div className="stat-col-rate">100%</div>
+                  <div className="stat-col-trend">
+                    <span className="trend-up">↑ 향상</span>
+                  </div>
                 </div>
-                <div className="ranking-item rank-3">
-                  <span className="rank-badge">🥉</span>
-                  <span className="member-name">박백엔드</span>
-                  <span className="member-score">85점</span>
-                  <span className="member-rate">90%</span>
+                <div className="stats-row rank-2">
+                  <div className="stat-col-rank">🥈</div>
+                  <div className="stat-col-name">이디자인</div>
+                  <div className="stat-col-score">88</div>
+                  <div className="stat-col-rate">95%</div>
+                  <div className="stat-col-trend">
+                    <span className="trend-flat">→ 유지</span>
+                  </div>
+                </div>
+                <div className="stats-row rank-3">
+                  <div className="stat-col-rank">🥉</div>
+                  <div className="stat-col-name">박백엔드</div>
+                  <div className="stat-col-score">85</div>
+                  <div className="stat-col-rate">90%</div>
+                  <div className="stat-col-trend">
+                    <span className="trend-down">↓ 하락</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -744,74 +786,87 @@ function AdminSettings({ onClose }) {
         {/* ORG-001: 기업 내 점수 비교 */}
         {activeTab === 'orgComparison' && (
           <div className="org-comparison-settings">
-            <h2>성과 분석</h2>
-            <p className="description">조직의 부서별 성과를 분석하고 비교합니다</p>
+            <h2>부서별 비교</h2>
+            <p className="description">동일 기업 내 부서별 평균 점수를 비교하고 분석합니다</p>
 
-            <div className="comparison-main-grid">
-              <div className="stats-grid">
-                <div className="stat-card">
-                  <div className="stat-icon">📊</div>
-                  <div className="stat-content">
-                    <span className="stat-label">조직</span>
-                    <span className="stat-value">{orgComparison.company}</span>
-                  </div>
+            <div className="company-info-card">
+              <div className="company-header">
+                <h3>{orgComparison.company}</h3>
+              </div>
+              <div className="company-stats">
+                <div className="stat-item">
+                  <span className="stat-label">전체 부서</span>
+                  <span className="stat-value">{orgComparison.departments.length}개</span>
                 </div>
-                <div className="stat-card">
-                  <div className="stat-icon">🏢</div>
-                  <div className="stat-content">
-                    <span className="stat-label">전체 부서</span>
-                    <span className="stat-value">{orgComparison.departments.length}</span>
-                  </div>
+                <div className="stat-item">
+                  <span className="stat-label">전체 인원</span>
+                  <span className="stat-value">
+                    {orgComparison.departments.reduce((sum, dept) => sum + dept.memberCount, 0)}명
+                  </span>
                 </div>
-                <div className="stat-card">
-                  <div className="stat-icon">👥</div>
-                  <div className="stat-content">
-                    <span className="stat-label">전체 인원</span>
-                    <span className="stat-value">{orgComparison.departments.reduce((sum, dept) => sum + dept.memberCount, 0)}명</span>
-                  </div>
-                </div>
-                <div className="stat-card">
-                  <div className="stat-icon">⭐</div>
-                  <div className="stat-content">
-                    <span className="stat-label">평균 점수</span>
-                    <span className="stat-value">{Math.round(orgComparison.departments.reduce((sum, dept) => sum + dept.avgScore, 0) / orgComparison.departments.length)}점</span>
-                  </div>
+                <div className="stat-item">
+                  <span className="stat-label">평균 점수</span>
+                  <span className="stat-value">
+                    {Math.round(orgComparison.departments.reduce((sum, dept) => sum + dept.avgScore, 0) / orgComparison.departments.length)}점
+                  </span>
                 </div>
               </div>
+            </div>
 
-              <div className="departments-ranking">
-                <h3>부서별 순위</h3>
-                <div className="ranking-list">
-                  {[...orgComparison.departments]
-                    .sort((a, b) => b.avgScore - a.avgScore)
-                    .map((dept, index) => (
-                      <div key={dept.id} className="ranking-item">
-                        <div className="ranking-rank">
-                          {index === 0 && <span className="rank-badge gold">1위</span>}
-                          {index === 1 && <span className="rank-badge silver">2위</span>}
-                          {index === 2 && <span className="rank-badge bronze">3위</span>}
-                          {index > 2 && <span className="rank-badge">{index + 1}</span>}
-                        </div>
-                        <div className="ranking-info">
-                          <div className="dept-name-row">
-                            <span className="dept-name">{dept.name}</span>
-                            <span className="member-count">({dept.memberCount}명)</span>
-                          </div>
-                          <div className="score-display">
-                            <div className="score-bar">
-                              <div className="score-fill" style={{ width: `${dept.avgScore}%` }}></div>
-                            </div>
-                            <span className="score-number">{dept.avgScore}점</span>
-                          </div>
-                        </div>
-                        <div className="ranking-growth">
-                          <span className={`growth-badge ${dept.growthRate >= 0 ? 'up' : 'down'}`}>
-                            {dept.growthRate >= 0 ? '↑' : '↓'} {Math.abs(dept.growthRate)}%
-                          </span>
+            <div className="departments-comparison">
+              <h3>부서별 성과 비교</h3>
+              <div className="comparison-table">
+                <div className="table-header">
+                  <div className="col-rank">순위</div>
+                  <div className="col-dept">부서명</div>
+                  <div className="col-score">평균 점수</div>
+                  <div className="col-members">인원</div>
+                  <div className="col-growth">성장률</div>
+                </div>
+                {[...orgComparison.departments]
+                  .sort((a, b) => b.avgScore - a.avgScore)
+                  .map((dept, index) => (
+                    <div key={dept.id} className={`table-row ${index === 0 ? 'top-rank' : ''}`}>
+                      <div className="col-rank">
+                        {index === 0 && '🥇'}
+                        {index === 1 && '🥈'}
+                        {index === 2 && '🥉'}
+                        {index > 2 && `${index + 1}위`}
+                      </div>
+                      <div className="col-dept">{dept.name}</div>
+                      <div className="col-score">
+                        <div className="score-bar-container">
+                          <div className="score-bar" style={{ width: `${dept.avgScore}%` }}></div>
+                          <span className="score-text">{dept.avgScore}점</span>
                         </div>
                       </div>
-                    ))}
-                </div>
+                      <div className="col-members">{dept.memberCount}명</div>
+                      <div className="col-growth">
+                        <span className={`growth-badge ${dept.growthRate >= 0 ? 'positive' : 'negative'}`}>
+                          {dept.growthRate >= 0 ? '↑' : '↓'} {Math.abs(dept.growthRate)}%
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            </div>
+
+            <div className="comparison-chart-section">
+              <h3>부서별 성과 시각화</h3>
+              <div className="chart-container">
+                {orgComparison.departments.map(dept => (
+                  <div key={dept.id} className="chart-bar-item">
+                    <div className="chart-label">{dept.name}</div>
+                    <div className="chart-bar-wrapper">
+                      <div 
+                        className="chart-bar-fill" 
+                        style={{ width: `${(dept.avgScore / 100) * 100}%` }}
+                      >
+                        <span className="chart-value">{dept.avgScore}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

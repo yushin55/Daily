@@ -102,7 +102,14 @@ function TeamSnippetView({ date, teamSnippets, currentUser, onClose, onWriteSnip
                 </div>
                 
                 <div className="snippet-body">
-                  {displayedSnippet.title && <h3 className="snippet-title">{displayedSnippet.title}</h3>}
+                  {displayedSnippet.title && (
+                    <div className="snippet-title-row">
+                      <h3 className="snippet-title">{displayedSnippet.title}</h3>
+                      {displayedSnippet.healthScore && (
+                        <span className="health-badge">💪 {displayedSnippet.healthScore}</span>
+                      )}
+                    </div>
+                  )}
                   <div className="snippet-content">
                     {displayedSnippet.content.split('\n').map((line, i) => (
                       <p key={i}>{line}</p>

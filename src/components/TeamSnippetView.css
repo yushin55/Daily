@@ -347,11 +347,34 @@
   gap: 12px;
 }
 
+.snippet-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
 .snippet-title {
   font-size: 16px;
   font-weight: 600;
   color: #333;
   margin: 0;
+  flex: 1;
+}
+
+.health-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: rgba(247, 147, 30, 0.15);
+  color: #f7931e;
+  border: 1px solid #f7931e;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .snippet-content {
