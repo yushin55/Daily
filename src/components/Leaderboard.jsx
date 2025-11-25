@@ -34,7 +34,7 @@ function Leaderboard() {
     },
     weekly: {
       companies: [
-        { rank: 1, team: '한화큐셀', score: 95, type: 'company' },
+        { rank: 1, team: '한화세미텍', score: 95, type: 'company' },
         { rank: 2, team: '한화비전', score: 89, type: 'company' },
         { rank: 3, team: '한화파워시스템', score: 82, type: 'company' },
         { rank: 4, team: '한화에어로스페이스', score: 78, type: 'company' },
